@@ -9,14 +9,15 @@ function App() {
   const [equipos, setEquipos] = useState('')
   const [minimo, setMinimo] = useState('')
   const [maximo, setMaximo] = useState('')
+  const [distancias, setDistancias] = useState('')
 
   const createFile = () => {
-    const blob = new Blob([ equipos,'\n',minimo,'\n',maximo ], { type: 'text/plain;charset=utf-8' });
+    const blob = new Blob([ equipos,'\n',minimo,'\n',maximo, '\n',distancias ], { type: 'text/plain;charset=utf-8' });
     saveAs( blob, 'DatosCalDepdzn.dzn' );
 
   }
 
-  const readFile = ( e ) => {
+  /*const readFile = ( e ) => {
 
     const file = e.target.files[0];
     if ( !file ) return;
@@ -33,7 +34,7 @@ function App() {
     fileReader.onerror = () => {
       console.log( fileReader.error );
     }
-  }
+  }*/
   return (
     <div className="App">
       <header className="App-header">
@@ -60,9 +61,15 @@ function App() {
           onChange={ ( e ) => setMaximo( e.target.value) }
         ></input>
 
-       
+        <label>Distancias: </label>
+        <textarea
+          cols="25"
+          rows="7"
+          placeholder="Entrada"
+          value={ distancias }
+          onChange={ ( e ) => setDistancias( e.target.value ) }
+        ></textarea>
 
-        <br />
       { /* <input 
           type="file"
           multiple={ false }
